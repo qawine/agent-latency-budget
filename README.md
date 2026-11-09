@@ -8,11 +8,22 @@ A small Hermes Agent plugin that makes tool latency observable per session.
 - `latency_budget_check` returns pass/fail against a configurable budget.
 - `latency_budget_report` returns count / p50 / p95 / max and the slowest tool.
 
+## Layout
+
+```text
+plugin/          the loadable Hermes plugin (plugin.yaml + __init__.py + tools + schemas)
+demo/            end-to-end demo through Hermes' real plugin + hook pipeline
+README.md        this file
+```
+
+The catalog entry points at `plugin/` via `subdir: plugin`.
+
 ## Install (local)
 ```bash
-cp -R hermes-plugin-demo ~/.hermes/plugins/agent-latency-budget
+mkdir -p ~/.hermes/plugins/agent-latency-budget
+cp -R plugin/. ~/.hermes/plugins/agent-latency-budget/
 hermes plugins enable agent-latency-budget
-hermes plugins doctor ~/.hermes/plugins/agent-latency-budget --ci
+hermes plugins validate ~/.hermes/plugins/agent-latency-budget
 ```
 
 ## Demo script (90 seconds)

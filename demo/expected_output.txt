@@ -1,6 +1,6 @@
 
 ── 1. Install into a throwaway HERMES_HOME
-HERMES_HOME = /var/folders/gt/ygtm1_s12z91b87hbg5tbcf40000gp/T/hermes-e2e-home-st606_25
+HERMES_HOME = /var/folders/gt/ygtm1_s12z91b87hbg5tbcf40000gp/T/hermes-e2e-home-t554lelg
 config      : plugins.enabled = [agent-latency-budget]
 
 ── 2. Hermes loads the plugin itself
@@ -17,7 +17,7 @@ terminal result: {"output": "demo-finished", "exit_code": 0, "error": null}
   "ok": false,
   "verdict": "exceeded",
   "tool": "terminal",
-  "elapsed_ms": 2362.0,
+  "elapsed_ms": 2356.0,
   "budget_ms": 500
 }
 
@@ -26,18 +26,18 @@ terminal result: {"output": "demo-finished", "exit_code": 0, "error": null}
   "ok": true,
   "session_id": "demo-session",
   "count": 2,
-  "p50_ms": 1181.5,
-  "p95_ms": 2362.0,
-  "max_ms": 2362.0,
+  "p50_ms": 1178.0,
+  "p95_ms": 2356.0,
+  "max_ms": 2356.0,
   "slowest_tool": "terminal",
   "tools": {
     "latency_budget_check": {
       "count": 1,
-      "max_ms": 1.0
+      "max_ms": 0.0
     },
     "terminal": {
       "count": 1,
-      "max_ms": 2362.0
+      "max_ms": 2356.0
     }
   }
 }

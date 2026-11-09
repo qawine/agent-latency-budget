@@ -26,7 +26,7 @@ import tempfile
 import time
 from pathlib import Path
 
-PLUGIN_DIR = Path(__file__).resolve().parent.parent
+PLUGIN_DIR = Path(__file__).resolve().parent.parent / "plugin"
 
 
 def hr(title: str) -> None:
