@@ -3,6 +3,9 @@ version: 0.1.0
 description: "Track per-session tool latency and fail fast when a tool exceeds a configurable budget. Adds latency_budget_check and latency_budget_report tools + a post_tool_call hook."
 author: qawine
 kind: standalone
+requires_hermes: ">=0.21.6"
+license: MIT
+homepage: https://github.com/qawine/agent-latency-budget
 provides_tools:
   - latency_budget_check
   - latency_budget_report
