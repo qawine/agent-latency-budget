@@ -54,3 +54,10 @@ discover and load it, then calls a real built-in tool through
 Captured output is in `demo/expected_output.txt`. The run above recorded a real
 `sleep 2` terminal call at 2454 ms, and `latency_budget_check` with a 500 ms budget
 returned `verdict: exceeded`.
+
+## Demo video
+
+`demo/video/agent_latency_budget_demo.mp4` is a 17-second vertical cut of the run above
+(1080×1920, H.264). `demo/render_video.py` regenerates it from
+`demo/expected_output.txt` — the text is the captured output of a real run, we only
+animate it.
