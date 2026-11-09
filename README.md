@@ -26,3 +26,20 @@ hermes plugins doctor ~/.hermes/plugins/agent-latency-budget --ci
 - No core overrides.
 - Hooks never raise into the agent loop.
 - State is in-memory and bounded (200 calls/session).
+
+## Verified end-to-end run
+
+`demo/e2e_demo.py` proves the plugin works through Hermes' own machinery rather than a mock:
+it installs the plugin into a throwaway `HERMES_HOME`, lets Hermes' `PluginManager`
+discover and load it, then calls a real built-in tool through
+`model_tools.handle_function_call` — the same path the agent loop uses — so the real
+`pre_tool_call` / `post_tool_call` hooks do the recording.
+
+```bash
+# from a hermes-agent checkout
+.venv/bin/python demo/e2e_demo.py
+```
+
+Captured output is in `demo/expected_output.txt`. The run above recorded a real
+`sleep 2` terminal call at 2454 ms, and `latency_budget_check` with a 500 ms budget
+returned `verdict: exceeded`.

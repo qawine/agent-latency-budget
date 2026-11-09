@@ -1,0 +1,47 @@
+
+── 1. Install into a throwaway HERMES_HOME
+HERMES_HOME = /var/folders/gt/ygtm1_s12z91b87hbg5tbcf40000gp/T/hermes-e2e-home-st606_25
+config      : plugins.enabled = [agent-latency-budget]
+
+── 2. Hermes loads the plugin itself
+has_hook('pre_tool_call') : True
+has_hook('post_tool_call'): True
+registered tool           : latency_budget_check  (toolset=latency_budget)
+registered tool           : latency_budget_report  (toolset=latency_budget)
+
+── 3. Real tool call through the real hook pipeline
+terminal result: {"output": "demo-finished", "exit_code": 0, "error": null}
+
+── 4. Did that call blow a 500 ms budget?
+{
+  "ok": false,
+  "verdict": "exceeded",
+  "tool": "terminal",
+  "elapsed_ms": 2362.0,
+  "budget_ms": 500
+}
+
+── 5. Session latency report
+{
+  "ok": true,
+  "session_id": "demo-session",
+  "count": 2,
+  "p50_ms": 1181.5,
+  "p95_ms": 2362.0,
+  "max_ms": 2362.0,
+  "slowest_tool": "terminal",
+  "tools": {
+    "latency_budget_check": {
+      "count": 1,
+      "max_ms": 1.0
+    },
+    "terminal": {
+      "count": 1,
+      "max_ms": 2362.0
+    }
+  }
+}
+
+── Done
+Hermes loaded the plugin, the real hook pipeline recorded the call,
+and both tools answered through the real registry.
